@@ -9,12 +9,15 @@
 </head>
 
 <body>
-    <h3> Informe a quantidade de abelhas presentes (em média)</h3>
-    <input type="number" id="input_abelhas"> <br>
+   
+   <center> 
+    <h3> Informe a quantidade média de abelhas presentes </h3>
+    <input type="number" id="input_abelhas"> (Mil) <br>
     <h3>Informe a quantidade de mel produzido (kg)</h3>
     <input type="number" id="input_mel"> <br>
     <button onclick="mediaAbelhas()">Ver média de produção</button>
-    <span id="span_media"></span>
+    <p id="p_media"></p>
+   </center>
 </body>
 
 </html>
@@ -27,25 +30,33 @@
         var lucroObtido = qtdMel * 15.3;
         var lucroEsperado = qdt_melPadrao * 15.3;
         var lucroTotal = qdt_melPadrao * 15.3;
-        var porcentagemDifKg = 100-((qdt_melPadrao * 100) / qtdMel) 
+        var porcentagemDifKg = 100-((qdt_melPadrao * 100) / qtdMel);
 
         if (qdt_melPadrao == qtdMel) {
-            span_media.innerHTML = `Sua produção está dentro da média`;
+            p_media.innerHTML = `Sua produção está dentro da média
+            <br>A média esperada é de ${Math.round(qdt_melPadrao)} kg para ${Math.round(mediaAbelhas)} mil abelhas.
+            <br>O lucro médio de uma produção de ${Math.round(qtdMel)} kg é R$ ${Math.round(lucroTotal)}. Seu lucro foi de R$ ${Math.round(qtdMel*15.3)}`;
+            p_media.innerHTML += `<br>A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+            em seu caso o nosso sistema de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar 20% de seus lucros já gerados anteriormente.`;
         }
 
         if (qdt_melPadrao > qtdMel) {
-            span_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg*-1)}% abaixo do esperado.
-            <br>A média esperada é de ${qdt_melPadrao} kg para ${mediaAbelhas} mil abelhas.
-            <br>O lucro médio de uma produção de ${qtdMel} kg é R$ ${lucroTotal}. Seu lucro foi de R$ ${qtdMel*15.3}
-            <br>Seu lucro foi R$ ${lucroEsperado - lucroObtido} a menos do que deveria`
+            p_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg*-1)}% abaixo do esperado.
+            <br>A média esperada é de ${Math.round(qdt_melPadrao)} kg para ${Math.round(mediaAbelhas)} mil abelhas.
+            <br>O lucro médio de uma produção de ${Math.round(qtdMel)} kg é R$ ${Math.round(lucroTotal)}. Seu lucro foi de R$ ${Math.round(qtdMel*15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} a menos do que deveria`;
+            p_media.innerHTML += `<br> A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+            em seu caso o nosso sistema de monitoramento poderá mitigar e diminuir 20% de seus prejuízos já gerados anteriormente.`;
         }
 
         if (qdt_melPadrao < qtdMel) {
-            span_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg)}% acima do esperado.
-            <br>A média esperada é de ${qdt_melPadrao} kg para ${mediaAbelhas} mil abelhas.
-            <br>O lucro médio de uma produção de ${qtdMel} kg é R$ ${lucroTotal}. Seu lucro foi de R$ ${qtdMel*15.3}
-            <br>Seu lucro foi R$ ${lucroObtido - lucroEsperado} a mais do que deveria`
+            p_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg)}% acima do esperado.
+            <br>A média esperada é de ${Math.round(qdt_melPadrao)} kg para ${Math.round(mediaAbelhas)} mil abelhas.
+            <br>O lucro médio de uma produção de ${Math.round(qtdMel)} kg é R$ ${Math.round(lucroTotal)}. Seu lucro foi de R$ ${Math.round(qtdMel*15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} a mais do que deveria`;
+            p_media.innerHTML += `<br> A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+            em seu caso o nosso sistema de monitoramento poderá replicar e aumentar 20% de seus lucros já gerados anteriormente.`;
         }
-
+        
     }
 </script>
