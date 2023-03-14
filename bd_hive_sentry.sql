@@ -1,7 +1,7 @@
--- criar banco de dados bee_sentry;
-create database bee_sentry;
--- usar tabela bee_sentry;
-use bee_sentry;
+-- criar banco de dados hive_sentry;
+create database hive_sentry;
+-- usar tabela hive_sentry;
+use hive_sentry;
 
 
 -- criar tabela cadastroUsuario;
@@ -14,7 +14,8 @@ create table cadastroUsuario
 	senha varchar(20) not null,
     telefoneResponsavel char(11) not null
     );
--- inserir dados na tabela cadastroUuario
+    
+-- inserir dados na tabela cadastroUsuario
 insert into cadastroUsuario values
     (null,'Bayer','19285647823486','Junior Santos','santosjunior@bayer.com','e4576bgdfgd','11967859873'),
     (null,'MaisMel LTDA','28639751904723','Maria Sanchez','atendimento@maismel.com.br','sgedryhe4','11956123487'),
@@ -27,6 +28,19 @@ insert into cadastroUsuario values
     (null,'Mel Holanda','87346543871296','Diana Borges','atendimentomelholanda@outlook.com','dcq2e2354','44992365437'),
     (null,'Agrilandia','87543765890123','Jorge Fernandes','fern.jorge@agrilandia.net','gaw4y45iui','11956347823');
     
+-- criar a tabela sensores
+create table sensores
+	(idSensor int primary key auto_increment,
+    tipoSensor varchar(20) not null,
+    statusSensor varchar(10) not null, constraint sttsCheck check (statusSensor in('ativo','inativo')),
+    localSensor char(8) not null, constraint localcheck check (localSensor in('interior','exterior'))
+    );
+    
+-- inserir os dados na tabela sensores
+insert into sensores values
+	(null,'temperatura','inativo','interior'),
+	(null,'temperatura','inativo','exterior');
+    
 -- criar tabela registroColmeia
 create table registroColmeia
 	(idRegistro int primary key auto_increment,
@@ -37,7 +51,8 @@ create table registroColmeia
     idUsuario int not null
     );
 
--- inserir dados na tabela registroColmeia     
+-- inserir dados na tabela registroColmeia
+-- Valores registrados no campo tempInterna e tempExterna estão representadas em celsius
 insert into registroColmeia values
 	(null,'2023-01-24','06:00:00','31.1','20',7),
 	(null,'2023-01-24','06:30:00','31.2','20',7),
@@ -64,19 +79,6 @@ insert into registroColmeia values
 	(null,'2023-01-24','17:00:00','35','29',7),
 	(null,'2023-01-24','17:30:00','34.9','28.5',7),
 	(null,'2023-01-24','18:00:00','34.8','28',7);
-    
--- criar a tabela sensores
-create table sensores
-	(idSensor int primary key auto_increment,
-    tipoSensor varchar(20) not null,
-    statusSensor varchar(10) not null, constraint sttsCheck check (statusSensor in('ativo','inativo')),
-    localSensor varchar(20)
-    );
-    
--- inserir os dados na tabela sensores
-insert into sensores values
-	(null,'temperatura','inativo','interior'),
-	(null,'temperatura','inativo','exterior');
     
 -- exibir a tabela cadastroUsuario    
 select * from cadastroUsuario;
