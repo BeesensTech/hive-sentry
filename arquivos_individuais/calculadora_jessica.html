@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .corpo {
+            background-color: black;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+
+
+<body class="corpo">
+    <center>
+       <h4> Nome <br>
+    <input id="ipt_nome"> <br>
+    Informe a quantidade de abelha <br>
+    (em dezenas pois já estamos contando que está em milhar) <br>
+    <input id="ipt_qtddeabelha"> <br>
+    Informe a quantidade de mel produzido (kg) <br>
+    <input id="ipt_mel"><br>
+
+    <button onclick="media()">Valor medio da producao</button></h4>
+
+    <div id="div_mensagem"></div>
+</center>
+</body>
+
+</html>
+<script>
+    function media() {
+        var nome = ipt_nome.value
+        var abelhas = Number(ipt_qtddeabelha.value)
+        var mel = Number(ipt_mel.value)
+        var media = (abelhas * 100) / 70
+        var padrao = (media / 100) * 30
+        var porcentagem = 100-((mel * 100)/abelhas)
+        var total = mel * 15.3
+        var esperado = padrao * 15.3
+        var obtido = mel * 15.5
+        
+
+
+        if (padrao == mel) {
+    div_mensagem.innerHTML = `Sua produção está dentro da média ${Math.round(porcentagem)}%
+    <br>A média esperada é de ${padrao} kg para ${abelhas} mil abelhas.
+    <br>O lucro médio de uma produção de ${mel} kg é R$ ${total}. Seu lucro foi de R$ ${mel*15.3}
+    <br>A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+    em seu caso o nosso sistema de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar 20% de seus lucros já gerados anteriormente.`
+        }
+        if (padrao > mel) {
+            div_mensagem.innerHTML = `Sua produção está ${Math.round(porcentagem*-1)}% abaixo do esperado.
+            <br>A média esperada é de ${padrao} kg para ${abelhas} mil abelhas.
+            <br>O lucro médio de uma produção de ${mel} kg é R$ ${total}. Seu lucro foi de R$ ${mel*15.3}
+            <br>Seu lucro foi R$ ${esperado - obtido} a menos do que deveria
+            <br> A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+            em seu caso o nosso sistema de monitoramento poderá mitigar e diminuir 20% de seus prejuízos já gerados anteriormente.`
+        }
+        if (padrao < mel) {
+            div_mensagem.innerHTML = `Sua produção está ${Math.round(porcentagem)}% acima do esperado.
+            <br>A média esperada é de ${padrao} kg para ${abelhas} mil abelhas.
+            <br>O lucro médio de uma produção de ${mel} kg é R$ ${total}. Seu lucro foi de R$ ${mel*15.3}
+            <br>Seu lucro foi R$ ${obtido -  esperado} a mais do que deveria
+            <br> A falta de um sitema monitorando os aplários poderm gerar um prejuízo de 25% da sua produção total, 
+            em seu caso o nosso sistema de monitoramento poderá replicar e aumentar 20% de seus lucros já gerados anteriormente.`
+        }
+    }
+
+
+</script>
