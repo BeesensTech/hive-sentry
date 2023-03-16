@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira</title>
+</head>
+
+<body>
+    <h1>Simulador financeiro</h1>
+
+    Informe a quantidade aproximada de abelhas nas colmeias: <input id="iptAbelhas" /> <br>
+    Informe a quantidade de mel produzida na última colheita (kg): <input id="iptMel"> <br>
+    <button onclick="calcularProducao()">Calcular</button>
+    <p id="pInforme"></p>
+
+</body>
+
+</html>
+
+<script>
+
+    function calcularProducao() {
+        var abelhas = Number(iptAbelhas.value);
+        var qntdMel = Number(iptMel.value);
+
+        // porcentagem de abelhas baseado no mínimo de 70000
+        // os kg de mel esperados devem estar de acordo com a porcentagem
+        var porcentagemAbelhas = (abelhas * 100) / 70000;
+        var qntdMelEsperado = (porcentagemAbelhas * 30) / 100;
+        var difMel = 100-((qntdMel * 100) / qntdMelEsperado);
+        var lucroEsperado = qntdMelEsperado * 15.30;
+        var lucroObtido = qntdMel * 15.30;
+
+        pInforme.innerHTML = `Com a quantidade de ${abelhas} abelhas, é esperado que haja uma produção de ${Math.round(qntdMelEsperado)} kg`
+
+        if (qntdMelEsperado == qntdMel) {
+            pInforme.innerHTML += `<br>Sua produção está dentro do esperado. :)
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}` 
+        }
+
+        if (qntdMelEsperado > qntdMel) {
+            var lucroObtido = lucroEsperado - lucroObtido;
+            pInforme.innerHTML += `<br>Sua produção está abaixo do recomendado em ${Math.round(difMel) }%, possuindo perdas de R$ ${Math.round(lucroObtido)}.
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado`
+        }
+
+        if (qntdMelEsperado < qntdMel) {
+            var lucroObtido = lucroObtido - lucroEsperado;
+            pInforme.innerHTML += `<br>Sua produção está num nível recomendado em ${Math.round(difMel) * -1}%, possuindo ganhos de R$ ${Math.round(lucroObtido)}.
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado`
+        }
+    }
+</script>
+
+
+<!-- 
+variaveis
+colmeias - talvez relacionar com o enxame eventualmente
+qntd mel produzido - media de 30kg por colheita
+kg do mel - 15.30
+enxame media - 70mil abelhas
+  -->
