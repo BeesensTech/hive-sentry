@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+    <h3> Informe a quantidade de abelhas presentes (em média)</h3>
+    <input type="number" id="input_abelhas"> <br>
+    <h3>Informe a quantidade de mel produzido (kg)</h3>
+    <input type="number" id="input_mel"> <br>
+    <button onclick="mediaAbelhas()">Ver média de produção</button><br> 
+    <span id="span_media"></span>
+</center>
+</body>
+
+</html>
+<script>
+    function mediaAbelhas() {
+        var mediaAbelhas = Number(input_abelhas.value);
+        var qtdMel = Number(input_mel.value);
+        var media = Number(mediaAbelhas) * 100 / 70;
+        var qdt_melPadrao = (media / 100) * 30;
+        var lucroObtido = qtdMel * 15.3;
+        var lucroEsperado = qdt_melPadrao * 15.3;
+        var lucroTotal = qdt_melPadrao * 15.3;
+        var porcentagemDifKg = 100-((qdt_melPadrao * 100) / qtdMel) 
+
+        if (qdt_melPadrao == qtdMel) {
+            span_media.innerHTML = `Sua produção está dentro da média`;
+        }
+
+        if (qdt_melPadrao > qtdMel) {
+            span_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg*-1)}% abaixo do esperado.
+            <br>A média esperada é de ${qdt_melPadrao} kg para ${mediaAbelhas} mil abelhas.
+            <br>O lucro médio de uma produção de ${qtdMel} kg é R$ ${lucroTotal}. Seu lucro foi de R$ ${qtdMel*15.3}
+            <br>Seu lucro foi R$ ${lucroEsperado - lucroObtido} a menos do que deveria`
+        }
+
+        if (qdt_melPadrao < qtdMel) {
+            span_media.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg)}% acima do esperado.
+            <br>A média esperada é de ${qdt_melPadrao} kg para ${mediaAbelhas} mil abelhas.
+            <br>O lucro médio de uma produção de ${qtdMel} kg é R$ ${lucroTotal}. Seu lucro foi de R$ ${qtdMel*15.3}
+            <br>Seu lucro foi R$ ${lucroObtido - lucroEsperado} a mais do que deveria`
+        }
+
+    }
+</script>
