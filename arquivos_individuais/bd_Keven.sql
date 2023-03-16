@@ -2,8 +2,6 @@
 create database hive_sentry;
 -- usar tabela hive_sentry;
 use hive_sentry;
-
-
 -- criar tabela cadastroUsuario;
 create table cadastroUsuario
 	(idUsuario int primary key auto_increment,
