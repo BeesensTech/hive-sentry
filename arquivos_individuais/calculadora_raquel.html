@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Simulador Financeiro - Beesens Technology </title>
+</head>
+<body>
+    <h2> Quantidade de Abelhas (milhar) </h2>
+    <input id="ipt_qtdAbelhas" type="number" min="1">
+    <h2> Quantidade de mel produzido (KG) </h2>
+    <input id="ipt_qtdMel" type="number" min="1">
+    <p></p>
+    <button onclick="calcularLucros()"> Analisar lucros </button>
+    <p></p>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function calcularLucros(){
+        var qtdAbelha = Number(ipt_qtdAbelhas.value);
+        var qtdMel = Number(ipt_qtdMel.value);
+        // Cálculo de equivalência, onde 70 representa a média de abelhas por colméia (70.000)
+        var mediaMel = (qtdAbelha * 100) / 70;
+        // Cálculo para descobrir a média esperada da produção de mel, onde 30 representa a quantidade de mel produzido em média por 1 colméia
+        var mediaEsperada = (mediaMel / 100 ) * 30;
+        // Valor do quilo do mel segundo o IBGE em 2021: R$ 15,30
+        var lucroMel = qtdMel * 15.3;
+        var lucroEsperado = mediaEsperada * 15.3;
+        // Cálculo para conseguirmos a porcentagem da diferença da quantidade de mel informada para a média de mel esperada
+        var porcentagemDiferenca = (qtdMel * 100) / mediaEsperada;
+
+        if(mediaEsperada > qtdMel){
+            var perdaMel = lucroEsperado - lucroMel;
+            div_mensagem.innerHTML = `
+                Opa! Há algo de errado com a sua produção. 
+                <br> A média de mel esperada era de: <b> ${Math.round(mediaEsperada)} kg </b>
+                <br> Você perdeu R$ ${Math.round(perdaMel)} 
+                <p></p> A falta de um sistema monitorando os apiários pode gerar um prejuízo de até <b> 25% </b> da sua produção total.
+                <br> Nosso solução de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar <b> 20% </b> de seus lucros 
+                já gerados anteriormente.
+            `;
+            
+        }
+        if(mediaEsperada ==  qtdMel){
+            div_mensagem.innerHTML = `A sua produção de mel está dentro da média.`;
+        }
+        if(mediaEsperada < qtdMel){
+            var ganhoMel = lucroMel - lucroEsperado;
+            div_mensagem.innerHTML = `
+                Ótimo! A sua produção está acima da média. 
+                <br> A média de mel esperada era de: <b> ${Math.round(mediaEsperada)} kg  </b> 
+                <br> Você lucrou R$ ${Math.round(ganhoMel)} acima do esperado
+                <p></p> A falta de um sistema monitorando os apiários pode gerar um prejuízo de até <b> 25% </b> da sua produção total.
+                <br> Nossa solução de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar <b> 20% </b> de seus lucros 
+                já gerados anteriormente.
+            `;
+        }
+    }
+</script>
