@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Informe a quantidade média de abelhas: <i>por milhar</i>
+    <input type="number" id="input_qtd_abelhas" ><br>
+    Informe a quantidade de mel produzido: <i>por kg</i>
+    <input type="number" id="input_qtd_mel"><br>
+    <button onclick="Simular()" >Simular Finança</button>
+    <span id="span_mel_abelha" ></span>
+</body>
+</html>
+<script>
+    function Simular() {
+        var abelhas = Number(input_qtd_abelhas.value);
+        var mel= Number(input_qtd_mel.value);
+        var abelhas_fixo = 70;
+        var mel_fixo = 30;
+
+        var prop_abelhas = (abelhas * 100) / abelhas_fixo;
+        var mel_esperado = (prop_abelhas / 100) * mel_fixo;
+
+        var preco_mel = 15.30;
+        var lucro_mel = mel * preco_mel;
+
+        var lucro_Esperado = mel_esperado * preco_mel;
+        var porcentagem = 100 - (mel * 100) / mel_esperado;
+        var perda = lucro_Esperado - lucro_mel;
+        
+
+        if (mel_esperado == mel) {
+            span_mel_abelha.innerHTML = `Sua produção está dentro da média<br>
+            A média esperada de ${Math.round(abelhas)} mil abelhas era ${Math.round(mel_esperado)} kg de mel<br>
+            Suas vendas provavelmente fora de: 
+            Sua produção deveria ser de ${Math.round(mel_esperado)} kg de mel e seu lucro deveria ser de: R$${Math.round(lucro_Esperado)}<br>
+            Seu lucro foi de: R$${Math.round(lucro_mel)}`
+        }
+        if (mel_esperado > mel) {
+            span_mel_abelha.innerHTML = `Sua produção está ${Math.round(porcentagem)}% abaixo do esperado<br>
+            A média esperada de uma produção de ${mel_fixo} kg é de ${mel_fixo * 15.30}<br>
+            O prejuízo foi de: R$${Math.round(perda)}<br>
+            Sua produção deveria ser de ${Math.round(mel_esperado)} kg de mel e seu lucro deveria ser de: R$${Math.round(lucro_Esperado)}<br>
+            Seu lucro foi de: R$${Math.round(lucro_mel)}`
+        }
+        if (mel_esperado < mel ) {
+            span_mel_abelha.innerHTML = `Sua produção está ${Math.round(porcentagem) * -1 }% acima do esperado<br>
+            A média esperada de ${Math.round(abelhas)} mil abelhas era ${Math.round(mel_esperado)} kg de mel<br>
+            Seu lucro foi de: R$${Math.round(lucro_mel)}<br>
+            Sua produção deveria ser de ${Math.round(mel_esperado)} kg de mel e seu lucro deveria ser de: R$${Math.round(lucro_Esperado)}<br>
+            `
+        }
+    }
+</script>

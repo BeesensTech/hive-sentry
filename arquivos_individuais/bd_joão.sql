@@ -1,12 +1,7 @@
--- criar banco de dados hive_sentry;
--- banco de dados da hive_sentry;
 create database hive_sentry;
--- usar tabela hive_sentry;
+
 use hive_sentry;
 
-
--- criar tabela cadastroUsuario;
--- tabel onde contém as informações de cadastro do usuario;
 create table cadastroUsuario
 	(idUsuario int primary key auto_increment,
     nomeEmpresa varchar(100) not null,
@@ -17,8 +12,7 @@ create table cadastroUsuario
     telefoneResponsavel char(11) not null
     );
     
--- inserir dados na tabela cadastroUsuario;
--- dados dos usuários cadastrados;
+
 insert into cadastroUsuario values
     (null,'Bayer','19285647823486','Junior Santos','santosjunior@bayer.com','e4576bgdfgd','11967859873'),
     (null,'MaisMel LTDA','28639751904723','Maria Sanchez','atendimento@maismel.com.br','sgedryhe4','11956123487'),
@@ -31,8 +25,7 @@ insert into cadastroUsuario values
     (null,'Mel Holanda','87346543871296','Diana Borges','atendimentomelholanda@outlook.com','dcq2e2354','44992365437'),
     (null,'Agrilandia','87543765890123','Jorge Fernandes','fern.jorge@agrilandia.net','gaw4y45iui','11956347823');
     
--- criar a tabela sensores
--- tabela onde contém as informações dos sensores; 
+
 create table sensores
 	(idSensor int primary key auto_increment,
     tipoSensor varchar(20) not null,
@@ -40,15 +33,17 @@ create table sensores
     localSensor char(8) not null, constraint localSensor check (localSensor in('interior','exterior'))
     );
     
--- inserir os dados na tabela sensores;
--- dados das informações dos sensores;
+
 insert into sensores values
 	(null,'temperatura','inativo','interior'),
 	(null,'temperatura','inativo','exterior'),
-    (null,'temperatura','manutenção','interior');
+    (null,'temperatura','manutenção','interior'),
+    (null,'temperatura','inativo','interior'),
+	(null,'temperatura','inativo','exterior'),
+    (null,'temperatura','manutenção','exterior'),
+    (null,'temperatura','ativo','interior');
     
--- criar tabela registroColmeia
--- tabela onde contém os dados dos sensores;
+
 create table registroColmeia 
 	(idRegistro int primary key auto_increment,
     dataRegistro date not null,
@@ -58,9 +53,7 @@ create table registroColmeia
     idUsuario int not null
     );
 
--- inserir dados na tabela registroColmeia
--- Valores registrados no campo tempInterna e tempExterna estão representadas em celsius
--- dados de um certo sensor
+
 insert into registroColmeia values
 	(null,'2023-01-24','06:00:00','31.1','20',7),
 	(null,'2023-01-24','06:30:00','31.2','20',7),
@@ -88,16 +81,9 @@ insert into registroColmeia values
 	(null,'2023-01-24','17:30:00','34.9','28.5',7),
 	(null,'2023-01-24','18:00:00','34.8','28',7);
     
--- exibir a tabela cadastroUsuario    
+   
 select * from cadastroUsuario;
--- exibir a tabela registroColmeia
-select * from registroColmeia;
--- exibir a tabela sensores
-select * from sensores;
 
--- exibir a tabela cadastroUsuario onde o emailResponsavel termina com .net    
-select * from cadastroUsuario where emailResponsavel like '%.net';
--- exibir cadastroUsuario onde o emailResponsavel termina com .com 
-select * from cadastroUsuario where emailResponsavel like '%.com';
--- exibir cadastroUsuario onde emailResponsavel termina com .com.br
-select * from cadastroUsuario where emailResponsavel like '%.com.br';
+select * from registroColmeia;
+
+select * from sensores;
