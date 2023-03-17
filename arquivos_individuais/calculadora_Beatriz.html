@@ -1,0 +1,74 @@
+<html lang="pt-br">
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simulador Financeiro</title>
+    <link rel="icon" href="beesens.png"/>
+</head>
+<body >
+
+    <center>
+    
+        <div class="container">
+            <div class="caixa">
+                <h1><img src="Imagotipo.png" width="650" height="100"></h1>
+        <h3> Informe a quantidade média de abelhas presentes </h3>
+        <input type="number" id="ipt_abelhas">
+        <br><i>(indicar por milhar)</i><br>
+
+        <h3>Informe a quantidade de mel produzido</h3>
+        <input type="number" id="ipt_mel">
+        <br><i>(indicar por kg)</i><br><br>
+
+        <button  class="btn" onclick="qntdAbelhas()">Simular Lucros</button>
+        <p id="p_mensagem"></p>
+            </div>
+        </div>
+    
+    </center>
+    
+</body>
+
+</html>
+<script>
+    function qntdAbelhas() {
+        var qntdAbelhas = Number(ipt_abelhas.value);
+        var qntdMel = Number(ipt_mel.value);
+
+        var porcentagemAbelhas = (qntdAbelhas * 100) / 70;
+        var qntdMelEsperado = (porcentagemAbelhas / 100) * 30;
+        var lucroObtido = qntdMel * 15.3;
+        var lucroEsperado = qntdMelEsperado * 15.3;
+        var porcentagemDifKg = 100 - ((qntdMel * 100) / qntdMelEsperado);
+
+        if (qntdMelEsperado == qntdMel) {
+            p_mensagem.innerHTML = `Sua produção está dentro da média
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}
+            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total 
+            <br>Nosso sistema de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar 20% de seus lucros já gerados anteriormente</p>`;
+        }
+
+        if (qntdMelEsperado > qntdMel) {
+            p_mensagem.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg)}% abaixo do esperado
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado
+            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total
+            <br>Nosso sistema de monitoramento poderá mitigar e diminuir 20% de seus prejuízos já gerados anteriormente</p>`;
+        }
+        if (qntdMelEsperado < qntdMel) {
+            p_mensagem.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg) * -1}% acima do esperado
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado
+            <p>A falta de um sistema monitorando os apiários podem gerar um prejuízo de até 25% da sua produção total 
+            <br>Nosso sistema de monitoramento poderá replicar e aumentar 20% de seus lucros já gerados anteriormente</p>`;
+        }
+
+    }
+</script>
