@@ -38,22 +38,26 @@
 
         if (qntdMelEsperado == qntdMel) {
             pInforme.innerHTML += `<br>Sua produção está dentro do esperado. :)
-            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
-            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}` 
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(abelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}
+            <br>Sem um sistema de monitoramento, pode-se ter até 25% de perdas na produção em decorrência do clima
+            <br>Com o HiveSentry, haverá a possibilidade de replicar os resultados e aumentar sua produção em até 20%` 
         }
 
         if (qntdMelEsperado > qntdMel) {
-            var lucroObtido = lucroEsperado - lucroObtido;
-            pInforme.innerHTML += `<br>Sua produção está abaixo do recomendado em ${Math.round(difMel) }%, possuindo perdas de R$ ${Math.round(lucroObtido)}.
+            pInforme.innerHTML += `<br>Sua produção está abaixo do recomendado em ${Math.round(difMel) }%.
             <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
-            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado`
+            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado
+            <br>Sem um sistema de monitoramento, pode-se ter até 25% de perdas na produção em decorrência do clima
+            <br>Com o HiveSentry, haverá a possibilidade de mitigar os prejuízos gerados em até 20%`
         }
 
         if (qntdMelEsperado < qntdMel) {
-            var lucroObtido = lucroObtido - lucroEsperado;
-            pInforme.innerHTML += `<br>Sua produção está num nível recomendado em ${Math.round(difMel) * -1}%, possuindo ganhos de R$ ${Math.round(lucroObtido)}.
+            pInforme.innerHTML += `<br>Sua produção está num nível recomendado em ${Math.round(difMel) * -1}%.
             <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
-            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado`
+            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado
+            <br>Sem um sistema de monitoramento, pode-se ter até 25% de perdas na produção em decorrência do clima
+            <br>Com o HiveSentry, haverá a possibilidade de replicar os resultados e aumentar sua produção em até 20%`
         }
     }
 </script>

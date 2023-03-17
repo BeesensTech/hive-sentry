@@ -56,34 +56,34 @@
 
         //caso a quantidade produzida seja igual a quantidade esperada
         if (qntdMelEsperado == qntdMel) {
-            pMensagemSimulador.innerHTML = `Sua produção está dentro da média.
-            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas.
-            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}.
+            pMensagemSimulador.innerHTML = `Sua produção está dentro da média
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}
 
-            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total .
-            <br>Nosso sistema de monitoramento poderá mostrar dados para auxiliar a replicação e aumentar 20% de seus lucros já gerados anteriormente.</p>`;
+            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total
+            <br>O <i style="color:yellow">HiveSentry</i> poderá mostrar dados para auxiliar a replicação e <b>aumentar</b> 20% de seus lucros já gerados anteriormente</p>`;
         }
 
         //caso a quantidade de mel produzida seja menor que a quantidade de mel esperado + diferença entre lucros
         if (qntdMelEsperado > qntdMel) {
-            pMensagemSimulador.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg)}% abaixo do esperado.
-            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas.
-            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}.
-            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado.
+            pMensagemSimulador.innerHTML = `<b style="color:#f03c3c">Sua produção está ${Math.round(porcentagemDifKg)}% abaixo do esperado</b>
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
+            <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
+            <br>Seu lucro foi R$ ${Math.round(lucroEsperado - lucroObtido)} abaixo do esperado
 
-            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total.
-            <br>Nosso sistema de monitoramento poderá mitigar e diminuir 20% de seus prejuízos já gerados anteriormente.</p>`;
+            <p>A falta de um sistema monitorando os apiários pode gerar um prejuízo de até 25% da sua produção total em decorrência do clima
+            <br>O <i style="color:yellow">HiveSentry</i> poderá ajudar a <b>mitigar</b> 20% de seus prejuízos já gerados anteriormente</p>`;
         }
 
         // caso a quantidade de mel produzida seja maior que a quantidade de mel esperado + diferença entre lucros
         if (qntdMelEsperado < qntdMel) {
-            pMensagemSimulador.innerHTML = `Sua produção está ${Math.round(porcentagemDifKg) * -1}% acima do esperado.
-            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas.
+            pMensagemSimulador.innerHTML = `<b style="color:#427ddb">Sua produção está ${Math.round(porcentagemDifKg) * -1}% acima do esperado</b>
+            <br>A média esperada é de ${Math.round(qntdMelEsperado)} kg para ${Math.round(qntdAbelhas)} mil abelhas
             <br>O lucro de uma produção de ${Math.round(qntdMelEsperado)} kg é R$ ${Math.round(lucroEsperado)}. Seu lucro foi de R$ ${Math.round(qntdMel * 15.3)}
-            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado.
+            <br>Seu lucro foi R$ ${Math.round(lucroObtido - lucroEsperado)} acima do esperado
 
             <p>A falta de um sistema monitorando os apiários podem gerar um prejuízo de até 25% da sua produção total 
-            <br>Nosso sistema de monitoramento poderá auuxiliar a replicar o sistema já implantado através de nosso sistema de monitoramento. </p>`;
+            <br>O <i style="color:yellow">HiveSentry</i> poderá auxiliar a <b>replicar</b> os resultados gerados anteriormente com a análise dos dados de sua produção</p>`;
         }
 
     }
